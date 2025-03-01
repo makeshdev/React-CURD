@@ -12,13 +12,14 @@ const Curd = () => {
   const [error, setError] = useState([]);
   const [btnChange, setBtnChange] = useState("Add");
 
+  //get data from input fiels and also add
   const InputFunction = (e) => {
     const { name, value } = e.target;
     setUserDetails((prev) => {
       return { ...prev, [name]: value };
     });
   };
-
+  //validate inputt field
   const validateInputs = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const phoneRegex = /^\d{10}$/;
@@ -42,7 +43,7 @@ const Curd = () => {
     setError("");
     return true;
   };
-
+  // adding data to an array
   const addFunction = (e) => {
     e.preventDefault();
 
@@ -59,11 +60,12 @@ const Curd = () => {
     setError("");
   };
 
+  //editing data set to input field
   const editBtn = (userData) => {
     setUserDetails(userData);
     setBtnChange("Update");
   };
-
+  //deleteing data
   const deleteBtn = (index) => {
     setUsers((prev) => prev.filter((i) => i.id !== index));
   };
@@ -77,7 +79,7 @@ const Curd = () => {
       phone: "",
     });
   };
-
+  //updatind data
   const updateFunction = () => {
     if (!validateInputs()) return;
     setUsers((prev) =>
@@ -150,6 +152,7 @@ const Curd = () => {
         </div>
       </div>
       <div className="w-full max-w-lg rounded-lg mt-10">
+        {/* mapping user array  */}
         {users.length > 0 && (
           <table className="table-auto w-full border-collapse border border-gray-300">
             <thead>
